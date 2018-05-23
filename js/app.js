@@ -2,7 +2,17 @@
  * Create a list that holds all of your cards
  */
 
+ const basketball = "fas fa-basketball-ball";
+ const bowling = "fas fa-bowling-ball";
+ const baseball = "fas fa-baseball-ball";
+ const football = "fas fa-football-ball";
+ const soccerBall = "fas fa-futbol";
+ const quidditch = "fas fa-quidditch";
+ const volleyball = "fas fa-volleyball-ball";
+ const tableTennis = "fas fa-table-tennis"; 
 
+ let gameboard = [basketball, bowling, baseball, football, soccerBall, quidditch, volleyball, tabelTennis];
+ let cardDeck = document.querySelectorAll(deck);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
