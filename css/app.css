@@ -17,7 +17,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/computer.png'); /* Background pattern from Pixabay */
+    background: #000000 url('../img/computer.png'); /* Background pattern from Pixabay */
     font-family: 'Coda', cursive;
 }
 
@@ -29,8 +29,10 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3em;
     font-weight: 300;
+    color: #3de458;
 }
 
 /*
@@ -40,7 +42,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #1af8e6 0%, #3de458 100%);
+    background: linear-gradient(160deg, #20b2aa 0%, #3de458 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -82,13 +84,14 @@ h1 {
 }
 
 /*
- * Styles for the Score Panel
+ * Styles for the Score Card
  */
 
 .score-panel {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    color: #48d1cc;
 }
 
 .score-panel .stars {

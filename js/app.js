@@ -1,18 +1,46 @@
 /*
  * Create a list that holds all of your cards
  */
+const cardListArray = ['fa-basketball-ball', 'fa-basketball-ball', 
+                      'fa-bowling-ball', 'fa-bowling-ball', 
+                      'fa-baseball-ball', 'fa-baseball-ball', 
+                      'fa-football-ball', 'fa-football-ball', 
+                      'fa-futbol', 'fa-futbol',
+                      'fa-quidditch', 'fa-quidditch',
+                      'fa-volleyball-ball', 'fa-volleyball-ball', 
+                      'fa-table-tennis', 'fa-table-tennis'
+                    ];
 
- const basketball = "fas fa-basketball-ball";
- const bowling = "fas fa-bowling-ball";
- const baseball = "fas fa-baseball-ball";
- const football = "fas fa-football-ball";
- const soccerBall = "fas fa-futbol";
- const quidditch = "fas fa-quidditch";
- const volleyball = "fas fa-volleyball-ball";
- const tableTennis = "fas fa-table-tennis"; 
+let cards = document.querySelectorAll('.card');
+let showCards = [];
 
- let gameboard = [basketball, bowling, baseball, football, soccerBall, quidditch, volleyball, tabelTennis];
- let cardDeck = document.querySelectorAll(deck);
+cards.forEach(function(card) {
+    card.addEventListener('click', function(flip) {
+        showCards.push(card);
+        card.classList.add('open', 'show');
+
+        if (showCards.length == 2) {
+            setTimeout(function() {
+                showCards.forEach(function(card) {
+                    card.classList.remove('open', 'show');
+                });
+
+                showCards=[];
+            }, 1500);
+        }
+    });
+});
+/*function cardFlip(event) {
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', function() {
+            cards[i].classList.toggle('show');
+            cards[i].classList.toggle('open');
+            showCards.push(cards[i]);
+        })
+    }
+}
+cardFlip();*/
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -34,7 +62,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
