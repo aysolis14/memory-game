@@ -8,38 +8,42 @@ const cardListArray = ['fa-basketball-ball', 'fa-basketball-ball',
                       'fa-futbol', 'fa-futbol',
                       'fa-quidditch', 'fa-quidditch',
                       'fa-volleyball-ball', 'fa-volleyball-ball', 
-                      'fa-table-tennis', 'fa-table-tennis'
-                    ];
+                      'fa-table-tennis', 'fa-table-tennis'];
 
 let cards = document.querySelectorAll('.card');
 let showCards = [];
 
 cards.forEach(function(card) {
-    card.addEventListener('click', function(flip) {
+    card.addEventListener('click', function(f) {
         showCards.push(card);
         card.classList.add('open', 'show');
 
         if (showCards.length == 2) {
-            setTimeout(function() {
-                showCards.forEach(function(card) {
-                    card.classList.remove('open', 'show');
-                });
-
-                showCards=[];
-            }, 1500);
+            cardMatch();
         }
-    });
-});
-/*function cardFlip(event) {
-    for (let i = 0; i < cards.length; i++) {
-        cards[i].addEventListener('click', function() {
-            cards[i].classList.toggle('show');
-            cards[i].classList.toggle('open');
-            showCards.push(cards[i]);
+        else {
+            noMatch();
+        }
+    })
+})
+
+function noMatch () {
+    setTimeout(function() {
+        showCards.forEach(function(card) {
+            card.classList.remove('open', 'show');
         })
+        showCards = [];
+    }, 900);
+}
+
+function cardMatch () {
+    if (showCards[0].querySelector('i').classList.value == showCards[1].querySelector('i').classList.value) {
+        showCards[0].classList.add('match');
+        showCards[1].classList.add('match');
+        showCards[0].classList.remove('show', 'open');
+        showCards[1].classList.remove('show', 'open');
     }
 }
-cardFlip();*/
 
 /*
  * Display the cards on the page
