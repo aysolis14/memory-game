@@ -1,56 +1,36 @@
 /*
  * Create a list that holds all of your cards
  */
-const cardListArray = ['fa-basketball-ball', 'fa-basketball-ball', 
-                      'fa-bowling-ball', 'fa-bowling-ball', 
-                      'fa-baseball-ball', 'fa-baseball-ball', 
-                      'fa-football-ball', 'fa-football-ball', 
-                      'fa-futbol', 'fa-futbol',
-                      'fa-quidditch', 'fa-quidditch',
-                      'fa-volleyball-ball', 'fa-volleyball-ball', 
-                      'fa-table-tennis', 'fa-table-tennis'];
-
+let deck = document.querySelector('.deck');
 let cards = document.querySelectorAll('.card');
-let showCards = [];
+let cardsList = [...cards];
+let cardsShow = [];
+let cardsMatched = [];
+let moves = 0;
 
-cards.forEach(function(card) {
-    card.addEventListener('click', function(f) {
-        showCards.push(card);
-        card.classList.add('open', 'show');
+let moveCounter = document.querySelector('.moves');
+let starCount = document.querySelectorAll('.fa-star');
+let stars = [...starCount];
 
-        if (showCards.length == 2) {
-            cardMatch();
-        }
-        else {
-            noMatch();
-        }
-    })
-})
 
-function noMatch () {
-    setTimeout(function() {
-        showCards.forEach(function(card) {
-            card.classList.remove('open', 'show');
-        })
-        showCards = [];
-    }, 900);
-}
-
-function cardMatch () {
-    if (showCards[0].querySelector('i').classList.value == showCards[1].querySelector('i').classList.value) {
-        showCards[0].classList.add('match');
-        showCards[1].classList.add('match');
-        showCards[0].classList.remove('show', 'open');
-        showCards[1].classList.remove('show', 'open');
-    }
-}
-
+function startGame () {
+    cardsShuffle();
+} 
+document.onload = startGame();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+ function cardsShuffle () {
+     shuffle(cardsList);
+     for (let i = 0; i < cardsList.length; i++) {
+         let cardNew = cardsList[i];
+         deck.appendChild(cardNew);
+     }
+ }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -77,3 +57,59 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+ //from Mike Wales get unstuck FEND P3 webinar https://www.youtube.com/_ruH-sEs68y
+cards.forEach(function (card) {
+    card.addEventListener('click', function (f) {
+        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+            cardsShow.push(card);
+            card.classList.add('open', 'show');
+            
+            if (cardsShow.length == 2) {
+                cardMatch();
+                moveCount();
+                starScore();
+            }
+            else {
+                noMatch();
+            }
+        }
+    })
+})
+
+function noMatch () {
+        setTimeout(function() {
+        cardsShow.forEach(function(card) {
+            card.classList.remove('open', 'show');
+        })
+        cardsShow = [];
+    }, 900);
+}
+
+function cardMatch () {
+    if (cardsShow[0].querySelector('i').classList.value == cardsShow[1].querySelector('i').classList.value) {
+        cardsShow[0].classList.add('match');
+        cardsShow[1].classList.add('match');
+        cardsShow[0].classList.remove('show', 'open');
+        cardsShow[1].classList.remove('show', 'open');
+        cardsMatched.push(cardsShow[0].innerHTML);
+        cardsMatched.push(cardsShow[1].innerHTML);
+    }
+}
+
+function moveCount () {
+    moves++;
+    moveCounter.innerHTML = moves;
+}
+
+function starScore () {
+    if (moves > 10) {
+        stars[3].setAttribute('style', 'visibility: hidden');
+    } 
+    if (moves > 18) {
+        stars[2].setAttribute('style', 'visibility: hidden');
+    }
+    if (moves >= 25) {
+        stars[1].setAttribute('style', 'visibility: hidden');
+    }
+}
