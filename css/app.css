@@ -42,7 +42,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #20b2aa 0%, #3de458 100%);
+    background: linear-gradient(160deg, #b515bb 0%, #26e7c7 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -91,7 +91,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
-    color: #48d1cc;
+    color: #4fdcff;
 }
 
 .score-panel .stars {
@@ -109,4 +109,38 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*styles for modal*/
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.window {
+    background-color: #3de458;
+    text-align: center;
+    padding: 20px;
+    width: 70%;
+    border: 2px solid #2e3d49;
+    margin: 15% auto;
+}
+.modal-title {
+    color: #000000;
+    font-size: 45px;
+}
+
+.game-info {
+    font-weight: bold;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
 }

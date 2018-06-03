@@ -1,29 +1,34 @@
-/*
- * Create a list that holds all of your cards
- */
+//deck and all variables
 let deck = document.querySelector('.deck');
 let cards = document.querySelectorAll('.card');
 let cardsList = [...cards];
 let cardsShow = [];
 let cardsMatched = [];
 let moves = 0;
-
+let time = document.querySelector('.timer');
+let seconds = 0;
+let minutes = 0;
+let interval;
 let moveCounter = document.querySelector('.moves');
 let starCount = document.querySelectorAll('.fa-star');
 let stars = [...starCount];
+let winGame = document.querySelector('.modal');
+let popup = document.querySelector('.window');
+let movesFinal = document.querySelector('.info-moves');
+let timeFinal = document.querySelector('.info-time');
+let scoreFinal = document.querySelector('.info-score');
+let restart = document.querySelector('.fa-redo');
+let finalStarScore;
+let yes = document.querySelector('.yes');
+let no = document.querySelector('.no');
 
-
+//function to start game
 function startGame () {
     cardsShuffle();
 } 
 document.onload = startGame();
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
+//shuffle card function to shuffle cards
  function cardsShuffle () {
      shuffle(cardsList);
      for (let i = 0; i < cardsList.length; i++) {
@@ -47,24 +52,16 @@ function shuffle(array) {
     return array;
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
- //from Mike Wales get unstuck FEND P3 webinar https://www.youtube.com/_ruH-sEs68y
+/* adding event listeners to each card. running the card match function
+and no match function once two cards are clicked -- 
+From Mike Wales get unstuck FEND P3 webinar https://youtu.be/_rUH-sEs68Y
+*/
 cards.forEach(function (card) {
     card.addEventListener('click', function (f) {
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
             cardsShow.push(card);
             card.classList.add('open', 'show');
-            
+
             if (cardsShow.length == 2) {
                 cardMatch();
                 moveCount();
@@ -73,19 +70,22 @@ cards.forEach(function (card) {
             else {
                 noMatch();
             }
+            if (cardsMatched.length == 16) {
+                winner();
+            }
         }
     })
 })
-
+//function if the cards flipped do no match
 function noMatch () {
         setTimeout(function() {
         cardsShow.forEach(function(card) {
             card.classList.remove('open', 'show');
         })
         cardsShow = [];
-    }, 900);
+    }, 1300);
 }
-
+//function if the cards flipped match
 function cardMatch () {
     if (cardsShow[0].querySelector('i').classList.value == cardsShow[1].querySelector('i').classList.value) {
         cardsShow[0].classList.add('match');
@@ -96,20 +96,63 @@ function cardMatch () {
         cardsMatched.push(cardsShow[1].innerHTML);
     }
 }
-
+//function to count the moves and start timer once 1 move is counted
 function moveCount () {
     moves++;
     moveCounter.innerHTML = moves;
+    if (moves == 1) {
+        timer();
+    }
 }
-
+//function to score the user, with stars, based on number of moves counted
 function starScore () {
-    if (moves > 10) {
+    if (moves >= 12) {
         stars[3].setAttribute('style', 'visibility: hidden');
+        finalStarScore = 3;
     } 
-    if (moves > 18) {
+    if (moves >= 18) {
         stars[2].setAttribute('style', 'visibility: hidden');
+        finalStarScore = 2;
     }
     if (moves >= 25) {
         stars[1].setAttribute('style', 'visibility: hidden');
+        finalStarScore = 1;
     }
+}
+//function to run the timer and add it to html view on game
+function timer() {
+    interval = setInterval(function () {
+        time.innerHTML = "Time: " + minutes + " min " + seconds + " seconds";
+        seconds++;
+        if (seconds == 60) {
+            minutes++; 
+            seconds = 0;
+        }
+    }, 1000);
+}
+//function to show modal to user once the game has been won - when all matches have been found
+function winner () {
+    clearInterval(interval);
+    let timerFinal = time.innerHTML;
+    winGame.setAttribute('style', 'display: block');
+    movesFinal.innerHTML = "Moves: " + moves;
+    timeFinal.innerHTML = "" + timerFinal;
+    scoreFinal.innerHTML = "Score: " + finalStarScore + " stars.";
+    yes.addEventListener('click', function (y) {
+        closePopup();
+        window.location = window.location;
+    })
+    no.addEventListener('click', function(n) {
+        closePopup();
+    })        
+}
+//function to restart game when the restart button is clicked
+function restartGame () {
+    restart.addEventListener('click', function(r) {
+        window.location = window.location;
+    })
+} restartGame();
+
+function closePopup () {
+    winGame.setAttribute('style', 'display: none');
 }
