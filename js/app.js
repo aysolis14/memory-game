@@ -152,7 +152,7 @@ function restartGame () {
         window.location = window.location;
     })
 } restartGame();
-
+//function to close popup window when game is won
 function closePopup () {
     winGame.setAttribute('style', 'display: none');
 }
