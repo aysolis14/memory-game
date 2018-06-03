@@ -1,6 +1,6 @@
 # memory-game
 ## Memory Game for FEND Project 2
-This is the classica game of memory. Users are required to find all the pairs in the game.  
+This is the classic game of memory. Users are required to find all the pairs in the game.  
 
 ## How to Play the Game
 The goal of the game is to find all the matching cards. There is a total of 16 cards and 8 pairs.
