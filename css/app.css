@@ -17,8 +17,9 @@ body {
 }
 
 body {
-    background: #000000 url('../img/computer.png'); /* Background pattern from Pixabay */
-    font-family: 'Coda', cursive;
+    background: #040d41 url('../img/computer.png'); /* Background pattern from Pixabay */
+    font-family: 'Pragati Narrow', sans-serif;
+    font-size: 22px;
 }
 
 .container {
@@ -42,7 +43,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #b515bb 0%, #26e7c7 100%);
+    background: linear-gradient(160deg, #17dcff 0%, #2855aa 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -69,7 +70,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #ff7300;
     cursor: default;
 }
 
@@ -79,7 +80,7 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #ec3f3f;
+    background: #09ff00;
     font-size: 33px;
 }
 
@@ -89,11 +90,20 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 600px;
     margin-bottom: 10px;
-    color: #4fdcff;
+    color: #eff31a;
+    justify-content: space-between;
 }
 
+.moves {
+    align-content: center;
+    margin-right: 5px;
+}
+
+.timer {
+    margin-left: 5px;
+}
 .score-panel .stars {
     margin: 0;
     padding: 0;
