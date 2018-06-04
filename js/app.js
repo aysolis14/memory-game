@@ -64,11 +64,9 @@ cards.forEach(function (card) {
 
             if (cardsShow.length == 2) {
                 cardMatch();
+                noMatch();
                 moveCount();
                 starScore();
-            }
-            else {
-                noMatch();
             }
             if (cardsMatched.length == 16) {
                 winner();
@@ -83,7 +81,7 @@ function noMatch () {
             card.classList.remove('open', 'show');
         })
         cardsShow = [];
-    }, 1300);
+    }, 1000);
 }
 //function if the cards flipped match
 function cardMatch () {
