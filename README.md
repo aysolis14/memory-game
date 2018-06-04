@@ -31,6 +31,6 @@ The languages used for this project are:
 * JavaScript
 
 ## Dependencies 
-* [Font Awesome] (https://fontawesome.com/ "Font Awesome Homepage")
-* [Google Fonts - Pragati Narrow] (https://fonts.google.com/specimen/Pragati+Narrow)
-* [Google Fonts - Luckiest Guy] (https://fonts.google.com/specimen/Luckiest+Guy)
+* [Font Awesome](https://fontawesome.com/)
+* [Google Fonts-Pragati Narrow](https://fonts.google.com/specimen/Pragati+Narrow)
+* [Google Fonts-Luckiest Guy](https://fonts.google.com/specimen/Luckiest+Guy)
